@@ -25,25 +25,3 @@ To install this package, edit your `composer.json` file:
 Now run:
 
 `$ composer install`
-
-
-Screenshot
-----------------------
-
-![Option Panel](https://github.com/ironbound/wp-settings-api/raw/master/screenshot-1.png "The options panel build on the fly using the PHP Class")
-
-Frequently Asked Questions
----------------
-
-#### What this plugin for?
-
-It's mainly a plugin that demonstrates the Settings API PHP class
-
-#### Whats the facility?
-
-A plugin or theme developer can build their options panel with Settings API easily
-
-#### What is Settings API ?
-
-Settings API is a functionality from WordPress that helps developers to save their options data very easily and securely.
-More about [Settings API](http://codex.wordpress.org/Settings_API).
