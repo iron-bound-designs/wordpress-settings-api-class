@@ -2,7 +2,7 @@
 /**
  * IronBound Settings API wrapper class
  *
- * @version 1.0
+ * @version 1.3
  *
  * @author  Iron Bound Designs <info@ironbounddesigns.com>
  * @author  Tareq Hasan <tareq@weDevs.com>
