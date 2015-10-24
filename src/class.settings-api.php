@@ -1,18 +1,19 @@
 <?php
 /**
- * weDevs Settings API wrapper class
+ * IronBound Settings API wrapper class
  *
- * @version 1.2
+ * @version 1.0
  *
+ * @author  Iron Bound Designs <info@ironbounddesigns.com>
  * @author  Tareq Hasan <tareq@weDevs.com>
  * @link    http://tareq.weDevs.com Tareq's Planet
  */
 
-namespace WeDevs;
+namespace IronBound;
 
 /**
  * Class Settings_API
- * @package WeDevs
+ * @package IronBound
  */
 class Settings_API {
 
@@ -31,9 +32,17 @@ class Settings_API {
 	private $settings_fields = array();
 
 	/**
-	 * Constructor.
+	 * @var string
 	 */
-	public function __construct() {
+	private $name;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param string $name Name of the entire settings area.
+	 */
+	public function __construct( $name ) {
+		$this->name = $name;
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 	}
 
@@ -531,20 +540,26 @@ class Settings_API {
 		?>
 		<script>
 			jQuery(document).ready(function ($) {
+
+				var storageKey = '<?php echo esc_js($this->name . '-tab'); ?>';
+
 				//Initiate Color Picker
 				$('.wp-color-picker-field').wpColorPicker();
 
 				// Switches option sections
 				$('.group').hide();
 				var activetab = '';
+
 				if (typeof(localStorage) != 'undefined') {
-					activetab = localStorage.getItem("activetab");
+					activetab = localStorage.getItem(storageKey);
 				}
+
 				if (activetab != '' && $(activetab).length) {
 					$(activetab).fadeIn();
 				} else {
 					$('.group:first').fadeIn();
 				}
+
 				$('.group .collapsed').each(function () {
 					$(this).find('input:checked').parent().parent().parent().nextAll().each(
 						function () {
@@ -562,13 +577,16 @@ class Settings_API {
 				else {
 					$('.nav-tab-wrapper a:first').addClass('nav-tab-active');
 				}
+
 				$('.nav-tab-wrapper a').click(function (evt) {
 					$('.nav-tab-wrapper a').removeClass('nav-tab-active');
 					$(this).addClass('nav-tab-active').blur();
 					var clicked_group = $(this).attr('href');
+
 					if (typeof(localStorage) != 'undefined') {
-						localStorage.setItem("activetab", $(this).attr('href'));
+						localStorage.setItem(storageKey, $(this).attr('href'));
 					}
+					
 					$('.group').hide();
 					$(clicked_group).fadeIn();
 					evt.preventDefault();
@@ -583,7 +601,7 @@ class Settings_API {
 					var file_frame = wp.media.frames.file_frame = wp.media({
 						title   : self.data('uploader_title'),
 						button  : {
-							text: self.data('uploader_button_text'),
+							text: self.data('uploader_button_text')
 						},
 						multiple: false
 					});
