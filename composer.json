@@ -1,9 +1,9 @@
 {
-    "name": "tareq1988/wordpress-settings-api-class",
+    "name": "ironbound/wp-settings-api",
     "type": "library",
     "description": "WordPress settings API Abstraction Class",
     "keywords": ["wp","wordpress", "settings-api"],
-    "homepage": "https://github.com/tareq1988/wordpress-settings-api-class",
+    "homepage": "https://github.com/iron-bound-designs/wp-settings-api",
     "license": "GPLv2",
     "authors": [
         {
@@ -11,12 +11,18 @@
             "email": "tareq@wedevs.com",
             "homepage": "http://tareq.wedevs.com",
             "role": "Developer"
+        },
+        {
+            "name": "Iron Bound Designs",
+            "email": "info@ironbounddesigns.com",
+            "homepage": "http://ironbounddesigns.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.2.4"
+        "php": ">=5.3"
     },
     "autoload": {
-        "classmap": ["src/"]
+        "files": ["src/API.php"]
     }
 }

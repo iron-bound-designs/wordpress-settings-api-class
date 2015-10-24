@@ -9,13 +9,13 @@
  * @link    http://tareq.weDevs.com Tareq's Planet
  */
 
-namespace IronBound;
+namespace IronBound\WP_Settings_API;
 
 /**
- * Class Settings_API
+ * Class API
  * @package IronBound
  */
-class Settings_API {
+class API {
 
 	/**
 	 * settings sections array
@@ -49,7 +49,7 @@ class Settings_API {
 	/**
 	 * Enqueue scripts and styles
 	 */
-	function admin_enqueue_scripts() {
+	public function admin_enqueue_scripts() {
 		wp_enqueue_style( 'wp-color-picker' );
 
 		wp_enqueue_media();
@@ -64,7 +64,7 @@ class Settings_API {
 	 *
 	 * @return self
 	 */
-	function set_sections( $sections ) {
+	public function set_sections( $sections ) {
 		$this->settings_sections = $sections;
 
 		return $this;
@@ -77,7 +77,7 @@ class Settings_API {
 	 *
 	 * @return self
 	 */
-	function add_section( $section ) {
+	public function add_section( $section ) {
 		$this->settings_sections[] = $section;
 
 		return $this;
@@ -90,7 +90,7 @@ class Settings_API {
 	 *
 	 * @return self
 	 */
-	function set_fields( $fields ) {
+	public function set_fields( $fields ) {
 		$this->settings_fields = $fields;
 
 		return $this;
@@ -104,7 +104,7 @@ class Settings_API {
 	 *
 	 * @return self
 	 */
-	function add_field( $section, $field ) {
+	public function add_field( $section, $field ) {
 		$defaults = array(
 			'name'  => '',
 			'label' => '',
@@ -127,7 +127,7 @@ class Settings_API {
 	 * This function gets the initiated settings sections and fields. Then
 	 * registers them to WordPress and ready for use.
 	 */
-	function admin_init() {
+	public function admin_init() {
 		//register settings sections
 		foreach ( $this->settings_sections as $section ) {
 			if ( false == get_option( $section['id'] ) ) {
@@ -202,7 +202,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_text( $args ) {
+	public function callback_text( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -219,7 +219,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_url( $args ) {
+	public function callback_url( $args ) {
 		$this->callback_text( $args );
 	}
 
@@ -228,7 +228,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_number( $args ) {
+	public function callback_number( $args ) {
 		$this->callback_text( $args );
 	}
 
@@ -237,7 +237,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_checkbox( $args ) {
+	public function callback_checkbox( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 
@@ -256,7 +256,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_multicheck( $args ) {
+	public function callback_multicheck( $args ) {
 
 		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
 
@@ -278,7 +278,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_radio( $args ) {
+	public function callback_radio( $args ) {
 
 		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
 
@@ -299,7 +299,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_select( $args ) {
+	public function callback_select( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -319,7 +319,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_textarea( $args ) {
+	public function callback_textarea( $args ) {
 
 		$value = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -337,7 +337,7 @@ class Settings_API {
 	 *
 	 * @return string
 	 */
-	function callback_html( $args ) {
+	public function callback_html( $args ) {
 		echo $this->get_field_description( $args );
 	}
 
@@ -346,7 +346,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_wysiwyg( $args ) {
+	public function callback_wysiwyg( $args ) {
 
 		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
@@ -374,7 +374,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_file( $args ) {
+	public function callback_file( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -395,7 +395,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_password( $args ) {
+	public function callback_password( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -411,7 +411,7 @@ class Settings_API {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_color( $args ) {
+	public function callback_color( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -425,7 +425,7 @@ class Settings_API {
 	/**
 	 * Sanitize callback for Settings API
 	 */
-	function sanitize_options( $options ) {
+	public function sanitize_options( $options ) {
 		foreach ( $options as $option_slug => $option_value ) {
 			$sanitize_callback = $this->get_sanitize_callback( $option_slug );
 
@@ -446,7 +446,7 @@ class Settings_API {
 	 *
 	 * @return mixed string or bool false
 	 */
-	function get_sanitize_callback( $slug = '' ) {
+	public function get_sanitize_callback( $slug = '' ) {
 		if ( empty( $slug ) ) {
 			return false;
 		}
@@ -475,7 +475,7 @@ class Settings_API {
 	 *
 	 * @return string
 	 */
-	function get_option( $option, $section, $default = '' ) {
+	public function get_option( $option, $section, $default = '' ) {
 
 		$options = get_option( $section );
 
@@ -491,7 +491,7 @@ class Settings_API {
 	 *
 	 * Shows all the settings section labels as tab
 	 */
-	function show_navigation() {
+	public function show_navigation() {
 		$html = '<h2 class="nav-tab-wrapper">';
 
 		foreach ( $this->settings_sections as $tab ) {
@@ -508,7 +508,7 @@ class Settings_API {
 	 *
 	 * This function displays every sections in a different form
 	 */
-	function show_forms() {
+	public function show_forms() {
 		?>
 		<div class="metabox-holder">
 			<?php foreach ( $this->settings_sections as $form ) { ?>
@@ -536,7 +536,7 @@ class Settings_API {
 	 *
 	 * This code uses localstorage for displaying active tabs
 	 */
-	function script() {
+	public function script() {
 		?>
 		<script>
 			jQuery(document).ready(function ($) {
