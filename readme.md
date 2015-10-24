@@ -1,7 +1,7 @@
 What is this?
 ---------------
 
-This is a fork of [WeDevs Settings API Class](https://github.com/tareq1988/wordpress-settings-api-class).
+This is a fork of [WeDevs Settings API Class](https://github.com/tareq1988/wordpress-settings-api-class) that utilizes PHP 5.3 features and makes a couple of other small adjustments.
 
 It's a PHP class wrapper for handling WordPress [Settings API](http://codex.wordpress.org/Settings_API). Gives a very handy way to build theme or plugins option panel.
 
@@ -17,7 +17,7 @@ To install this package, edit your `composer.json` file:
 ```js
 {
     "require": {
-        "tareq1988/wordpress-settings-api-class": "dev-master"
+        "ironbound/wp-settings-api": "^1.0"
     }
 }
 ```
@@ -30,7 +30,7 @@ Now run:
 Screenshot
 ----------------------
 
-![Option Panel](https://github.com/tareq1988/wordpress-settings-api-class/raw/master/screenshot-1.png "The options panel build on the fly using the PHP Class")
+![Option Panel](https://github.com/ironbound/wp-settings-api/raw/master/screenshot-1.png "The options panel build on the fly using the PHP Class")
 
 Frequently Asked Questions
 ---------------
@@ -47,24 +47,3 @@ A plugin or theme developer can build their options panel with Settings API easi
 
 Settings API is a functionality from WordPress that helps developers to save their options data very easily and securely.
 More about [Settings API](http://codex.wordpress.org/Settings_API).
-
-
-Changelog:
-----------------------
-```
-v1.1 (23 April, 2015)
-------------------------
-- [new] Folder structure updated
-- [new] composer support added
-- [new] Number field added
-- [new] URL field added
-- [improved] wysiwyg field responsive support. Allow to pass options to wp_editor
-- [new] WP Media uploader added
-
-v1.0 (16 July, 2014)
-------------------------
-- [new] color, password and wysiwyg example added on plugin settings
-- [new] Color Picker added
-- [improved] Allow to set description for section
-- Some other old fixes ;)
-```
